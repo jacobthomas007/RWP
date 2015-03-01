@@ -1,2 +1,2 @@
-rm gpio
-gcc gpio.c -o gpio
+rm app
+gcc gpio_lib.c app.c -o app

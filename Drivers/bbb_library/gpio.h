@@ -10,5 +10,7 @@
 #define INPUT 1
 #define HIGH 1
 #define LOW 0
+#define GPIO1_28 28
+
 int pinMode(int pin ,volatile void *gpio1_addr, int status);
 int digitalWrite(int pin, volatile void *gpio1_addr, int value);

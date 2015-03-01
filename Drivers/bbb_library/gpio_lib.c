@@ -5,7 +5,9 @@
 	//volatile unsigned int *gpio_cleardataout=NULL;
 	
 #include "gpio.h"
-
+#include<stdio.h>
+#include<stdlib.h>
+#define DEBUG
 //int pinMode(PIN,MMAP,STATUS) ---  outline 
 //int init_gpio()
 //{
@@ -19,7 +21,9 @@ int pinMode(int pin ,volatile void *gpio1_addr, int status)
 	gpio1_oe_addr = gpio1_addr + GPIO_OE;
 	reg = *gpio1_oe_addr;
 	if(status)
-	//reg = reg & (0XFFFFFFFF ^ (pin)); // input
+	{
+		//reg = reg & (0XFFFFFFFF ^ (pin)); // input
+	}
 	else
 	reg = reg & (0XFFFFFFFF ^ (1<<pin));	// output
 
@@ -29,7 +33,7 @@ int pinMode(int pin ,volatile void *gpio1_addr, int status)
 	printf("reg = %x \n",reg);
 	#endif
 
-//	*gpio_oe_addr = reg;
+	*gpio1_oe_addr = reg;
 
 	return 1;
 }
