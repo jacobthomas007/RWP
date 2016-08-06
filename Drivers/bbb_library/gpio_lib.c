@@ -1,3 +1,8 @@
+/*
+	Copyrite (c) 4 Aug 2016 Author:- Jacob Thomas 
+*/
+
+
 	//volatile unsigned int *gpio_oe_addr=NULL;
 	//volatile void *gpio1_addr = NULL; 
 	//volatile unsigned int *gpio_dataout=NULL;
@@ -22,7 +27,7 @@ int pinMode(int pin ,volatile void *gpio1_addr, int status)
 	reg = *gpio1_oe_addr;
 	if(status)
 	{
-		//reg = reg & (0XFFFFFFFF ^ (pin)); // input
+		reg = reg |  (1<<pin); // input, read the value from the pin
 	}
 	else
 	reg = reg & (0XFFFFFFFF ^ (1<<pin));	// output
@@ -48,4 +53,14 @@ int digitalWrite(int pin, volatile void *gpio1_addr, int value)
 	*gpio1_dataout = (1<<pin);
 	else
 	*gpio1_dataout = (0<<pin);
+}
+
+int digitalRead(int pin, volatile void *gpio1_addr)
+{
+	volatile unsigned int *gpio1_datain = NULL;
+	gpio1_datain = gpio1_addr + GPIO_DATAIN;
+	if(*gpio1_datain & (1<<pin))
+	return 1;
+	else
+	return 0;
 }

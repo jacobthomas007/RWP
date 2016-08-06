@@ -8,6 +8,7 @@
 
 int main()
 {
+	int ret;
 	volatile void *gpio1_addr = NULL;
 	int fd = open("/dev/mem", O_RDWR);
 	if(fd < -1)
@@ -27,10 +28,13 @@ int main()
 	pinMode(GPIO1_28,gpio1_addr,OUTPUT);
 	while(1)
 	{
-		digitalWrite(GPIO1_28, gpio1_addr, HIGH);
-		sleep(2);
-		digitalWrite(GPIO1_28, gpio1_addr, LOW);
-		sleep(2);
+//		digitalWrite(GPIO1_28, gpio1_addr, HIGH);
+//		sleep(2);
+//		digitalWrite(GPIO1_28, gpio1_addr, LOW);
+//		sleep(2);
+		ret = digitalRead(GPIO1_28,gpio1_addr);
+		if(ret)
+		printf("ret = %d",ret);
 	}
 	return 0;
 }

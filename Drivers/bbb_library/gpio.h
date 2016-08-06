@@ -1,3 +1,6 @@
+#ifndef _GPIO_H_
+#define _GPIO_H_
+
 #define GPIO_OE 0X134
 #define GPIO_DATAIN 0X138
 #define GPIO_DATAOUT 0X13C
@@ -14,3 +17,4 @@
 
 int pinMode(int pin ,volatile void *gpio1_addr, int status);
 int digitalWrite(int pin, volatile void *gpio1_addr, int value);
+int digitalRead(int pin, volatile void *gpio1_addr);
